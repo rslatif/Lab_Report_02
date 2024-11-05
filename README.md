@@ -93,88 +93,70 @@ FROM employees
 WHERE salary > 50000;
 ```
 ### Output of Quesion_1
-![Output of Q1](./1.png)
+![Output of Q1](./image/1.png)
 
-## Question_2: Average salse performance score of all employees
+## Question_2: Write a query to find records where a column's value matches a specified pattern.
 ```sql
-SELECT AVG(sales_performance) AS average_sales_performance
-FROM performance_reviews;
+SELECT * 
+FROM customers 
+WHERE name LIKE 's%';
 ```
 ### Output of Quesion_2
-![Output of Q2](Image/q_2.png)
+![Output of Q2](./image/2.png)
 
-## Question_3: Highest customer feedback score
+## Question_3: Write a query to group records by a specific column and perform aggregate functions.
 ```sql
-SELECT MAX(customer_feedback) AS highest_customer_feedback
-FROM performance_reviews;
+SELECT department, AVG(salary) AS average_salary
+FROM employees
+GROUP BY department;
+
 ```
 ### Output of Quesion_3
-![Output of Q3](Image/q_3.png)
+![Output of Q3](./image/3.png)
 
-## Question_4: Total project completion score for each department
+## Question_4: Write a query to filter groups based on a condition.
 ```sql
-SELECT e_id, SUM(project_completion) AS total_project_completion
-FROM performance_reviews
-GROUP BY e_id;
+SELECT department, AVG(salary) AS average_salary
+FROM employees
+GROUP BY department
+HAVING AVG(salary) > 60000;
+
 ```
 ### Output of Quesion_4
-![Output of Q4](Image/q_4.png)
+![Output of Q4](./image/4.png)
 
-## Question_5: Average sales, customer feedback, and project completion scores for each department
+## Question_5: Write a query to select records where a column's value is within a specified set of values.
 ```sql
-SELECT d_id,
-       (SELECT d_name FROM departments WHERE departments.d_id = employees.d_id) AS department_name,
-       AVG(sales_performance) AS average_sales_performance,
-       COUNT(r_id) AS total_reviews
-FROM employees, performance_reviews
-WHERE employees.e_id = performance_reviews.e_id
-GROUP BY d_id;
+SELECT * 
+FROM orders 
+WHERE customer_id IN (1, 2, 3);
 
 ```
 ### Output of Quesion_5
-![Output of Q5](Image/q_5.png)
+![Output of Q5](./image/5.png)
 
-## Question_6: Find the department with an average sales performance score greater than 80
+## Question_6: Write a query to select records where a column's value is not within a specified set of values.
 ```sql
-SELECT e_id, AVG(sales_performance) AS average_sales_performance
-FROM performance_reviews
-GROUP BY e_id
-HAVING AVG(sales_performance) > 80;
+SELECT * 
+FROM products 
+WHERE category_id NOT IN (1, 2, 3);
 ```
 ### Output of Quesion_6
-![Output of Q6](Image/q_6.png)
+![Output of Q6](./image/6.png)
 
-## Question_7: Count the number of distinct review dates
+## Question_7: Write a query that includes a sub query to perform a more complex selection.
 ```sql
 
-SELECT COUNT(DISTINCT review_date) AS distinct_review_dates
-FROM performance_reviews;
+SELECT * 
+FROM employees 
+WHERE department_id IN (
+    SELECT department_id 
+    FROM employees 
+    GROUP BY department_id 
+    HAVING COUNT(*) > 10
+);
 ```
 ### Output of Quesion_7
-![Output of Q7](Image/q_7.png)
+![Output of Q7](./image/7.png)
 
-## Question_8: List all employee names along with their total number of reviews
-```sql
-SELECT first_name, last_name, 
-       (SELECT COUNT(*) 
-        FROM performance_reviews pr 
-        WHERE pr.e_id = e.e_id) AS total_reviews
-FROM employees e;
 
-```
-### Output of Quesion_8
-![Output of Q8](Image/q_8.png)
-
-## Question_9: Find the average sales performance and the total number of reviews for each department
-```sql
-SELECT d.d_name AS department_name,
-       (SELECT AVG(pr.sales_performance)
-        FROM performance_reviews pr
-        WHERE pr.e_id IN (SELECT e.e_id FROM employees WHERE e.d_id = d.d_id)) AS average_sales_performance,
-       (SELECT COUNT(*)
-        FROM performance_reviews pr
-        WHERE pr.e_id IN (SELECT e.e_id  FROM employees e WHERE e.d_id = d.d_id)) AS total_reviews
-FROM departments d;
-```
-### Output of Quesion_9
-![Output of Q9](Image/q_9.png)
