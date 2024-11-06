@@ -86,7 +86,7 @@ VALUES
 
 ```
 
-## Question_1: Write a query to select all records from a table where a specific condition is met.
+## Task_1: Write a query to select all records from a table where a specific condition is met.
 ```sql
 SELECT * 
 FROM employees 
@@ -95,7 +95,7 @@ WHERE salary > 50000;
 ### Output of Quesion_1
 ![Output of Q1](./image/1.png)
 
-## Question_2: Write a query to find records where a column's value matches a specified pattern.
+## Task_2: Write a query to find records where a column's value matches a specified pattern.
 ```sql
 SELECT * 
 FROM customers 
@@ -104,7 +104,7 @@ WHERE name LIKE 's%';
 ### Output of Quesion_2
 ![Output of Q2](./image/2.png)
 
-## Question_3: Write a query to group records by a specific column and perform aggregate functions.
+## Task_3: Write a query to group records by a specific column and perform aggregate functions.
 ```sql
 SELECT department, AVG(salary) AS average_salary
 FROM employees
@@ -114,7 +114,7 @@ GROUP BY department;
 ### Output of Quesion_3
 ![Output of Q3](./image/3.png)
 
-## Question_4: Write a query to filter groups based on a condition.
+## Task_4: Write a query to filter groups based on a condition.
 ```sql
 SELECT department, AVG(salary) AS average_salary
 FROM employees
@@ -125,7 +125,7 @@ HAVING AVG(salary) > 60000;
 ### Output of Quesion_4
 ![Output of Q4](./image/4.png)
 
-## Question_5: Write a query to select records where a column's value is within a specified set of values.
+## Task_5: Write a query to select records where a column's value is within a specified set of values.
 ```sql
 SELECT * 
 FROM orders 
@@ -135,7 +135,7 @@ WHERE customer_id IN (1, 2, 3);
 ### Output of Quesion_5
 ![Output of Q5](./image/5.png)
 
-## Question_6: Write a query to select records where a column's value is not within a specified set of values.
+## Task_6: Write a query to select records where a column's value is not within a specified set of values.
 ```sql
 SELECT * 
 FROM products 
@@ -144,7 +144,7 @@ WHERE category_id NOT IN (1, 2, 3);
 ### Output of Quesion_6
 ![Output of Q6](./image/6.png)
 
-## Question_7: Write a query that includes a sub query to perform a more complex selection.
+## Task_7: Write a query that includes a sub query to perform a more complex selection.
 ```sql
 
 SELECT * 
